@@ -45,18 +45,47 @@ describe('ProductsComponent', () => {
   });
 
   describe('should test get products initially', () => {
-    it('should get product data initially', () => {});
+    it('should get product data initially', () => {
+      mockProductService.getProducts.and.returnValue(of([]));
+      component.ngOnInit();
 
-    it('should get product data initially on failure', () => {});
+    });
+
+    it('should get product data initially on failure', () => {
+      mockProductService.getProducts.and.returnValue(throwError('error'));
+      component.ngOnInit();
+      expect(matSnackBar.open).toHaveBeenCalled();
+    });
   });
 
-  it('should test openDialog', () => {});
+  it('should test openDialog', () => {
+    component.openDialog()
+    expect(dialog.open).toHaveBeenCalled();
+  });
 
-  it('should test editDialog', () => {});
+  it('should test editDialog', () => {
+    component.editProduct({
+      category: 'test',
+      description: 'test',
+      image: 'test',
+      price: '',
+      title: 'test'
+    } as Product);
+
+    expect(dialog.open).toHaveBeenCalled();
+  });
 
   describe('should test deleteProduct', () => {
-    it('should test deleteProduct on success', () => {});
+    it('should test deleteProduct on success', () => {
+      mockProductService.deleteProduct.and.returnValue(of({}));
+      component.deleteProduct('test');
+      expect(matSnackBar.open).toHaveBeenCalled();
+    });
 
-    it('should test deleteProduct on failure', () => {});
+    it('should test deleteProduct on failure', () => {
+      mockProductService.deleteProduct.and.returnValue(throwError('error'));
+      component.deleteProduct('test');
+      expect(matSnackBar.open).toHaveBeenCalled();
+    });
   });
 });

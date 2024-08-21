@@ -33,9 +33,13 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have app-navbar', () => {});
+  it('should have app-navbar', () => {
+
+  });
 
   it('should have app-products', () => {});
 
-  it('should test sum of two numbers', () => {});
+  it('should test sum of two numbers', () => {
+    expect(component.add(1, 2)).toBe(3);
+  });
 });

@@ -29,6 +29,11 @@ export class AddProductComponent implements OnInit {
     this._data = d;
   }
 
+  /**
+   * @description Inicializa o formulário. E se caso tenha dados, preenche o formulário
+   * para edição.
+   * @memberof AddProductComponent
+   */
   ngOnInit(): void {
     const hasData = this.data && Object.keys(this.data).length;
     this.productForm = new FormGroup({
@@ -39,6 +44,11 @@ export class AddProductComponent implements OnInit {
     });
   }
 
+  /**
+   * @description Faz a requisição para api para salvar o produto.
+   * Caso o produto já exista, ele atualiza.
+   * @memberof AddProductComponent
+   */
   saveProduct() {
     const product = this.productForm.value as Product;
     if (Object.keys(this.data).length) {

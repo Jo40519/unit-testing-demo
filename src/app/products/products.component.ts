@@ -25,6 +25,10 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
   }
 
+  /**
+   * @description Faz a requisição do service para trazer todos os produtos.
+   * @memberof ProductsComponent
+  */
   getProducts() {
     this.showSpinner = true;
     this.productService.getProducts().subscribe({
@@ -41,12 +45,22 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  /**
+   * @description Abre o dialog para adicionar um novo produto.
+   * @memberof ProductsComponent
+   */
   openDialog() {
     this.dialog.open(AddProductComponent, {
       width: '40%',
     });
   }
 
+
+  /**
+   * @description Abre o dialog para editar um produto.
+   * @param {Product} product
+   * @memberof ProductsComponent
+   */
   editProduct(product: Product) {
     this.dialog.open(AddProductComponent, {
       data: product,
@@ -54,6 +68,11 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  /**
+   * @description Deleta um produto.
+   * @param {*} product
+   * @memberof ProductsComponent
+   */
   deleteProduct(product: any) {
     this.productService.deleteProduct(product.id).subscribe({
       next: (res) => {
